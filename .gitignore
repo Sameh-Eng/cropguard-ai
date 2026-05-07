@@ -2,9 +2,21 @@
 node_modules/
 .npm/
 
-# Environment
+# React
+frontend/dist/
+frontend/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+venv/
 .env
-.env.local
+.venv
+backend/ai_service/crop_disease_model.h5
+backend/ai_service/class_indices.json
+
+# Dataset
+Plant Village Dataset/
 
 # OS Files
 .DS_Store

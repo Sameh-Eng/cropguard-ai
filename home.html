@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CropGuard AI | Advanced Disease Detection</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#b9f296",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#b5cdb0",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#d0e9cb",
+                    "inverse-surface": "#32302b",
+                    "on-tertiary-fixed-variant": "#2f4f00",
+                    "primary": "#061907",
+                    "surface-container-highest": "#e7e2da",
+                    "on-background": "#1d1c17",
+                    "on-primary-container": "#7f977c",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#4e644c",
+                    "tertiary-fixed": "#c0f282",
+                    "on-primary-fixed": "#0c200d",
+                    "primary-container": "#1a2e1a",
+                    "tertiary": "#0b1900",
+                    "on-secondary-fixed-variant": "#215106",
+                    "on-secondary-container": "#3d6e23",
+                    "tertiary-fixed-dim": "#a4d569",
+                    "error": "#ba1a1a",
+                    "surface-container": "#f2ede5",
+                    "on-tertiary-fixed": "#102000",
+                    "inverse-on-surface": "#f5f0e8",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f8f3eb",
+                    "secondary-container": "#b6f094",
+                    "secondary": "#396a1f",
+                    "on-tertiary-container": "#719e38",
+                    "on-surface": "#1d1c17",
+                    "on-primary-fixed-variant": "#374c36",
+                    "surface-variant": "#e7e2da",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c3c8bf",
+                    "tertiary-container": "#1a2f00",
+                    "surface-dim": "#ded9d2",
+                    "on-secondary-fixed": "#082100",
+                    "outline": "#747871",
+                    "surface-container-high": "#ece8e0",
+                    "surface-bright": "#fef9f1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#434841",
+                    "background": "#fef9f1",
+                    "inverse-primary": "#b5cdb0",
+                    "surface": "#fef9f1",
+                    "secondary-fixed-dim": "#9ed67d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Manrope"],
+                    "h1": ["Newsreader"],
+                    "label-caps": ["Manrope"],
+                    "h2": ["Newsreader"],
+                    "h3": ["Newsreader"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "h2": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface-container/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-[0_8px_30px_rgb(26,46,26,0.08)]">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="eco">eco</span>
+<h1 class="font-h2 text-h2 font-semibold text-primary dark:text-primary-fixed">CropGuard AI</h1>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant/70 uppercase">Disease Detection System</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6 items-center">
+<a class="font-label-caps text-label-caps text-primary dark:text-primary-fixed border-b-2 border-secondary transition-all duration-200" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant/70 hover:text-secondary transition-colors duration-300" href="#">Scan</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant/70 hover:text-secondary transition-colors duration-300" href="#">Library</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant/70 hover:text-secondary transition-colors duration-300" href="#">Expert</a>
+</nav>
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm border border-secondary/10">
+<span class="material-symbols-outlined text-[16px]" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-caps text-[10px]">Powered by Local AI</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+<!-- Mobile UI Indicator -->
+<div class="md:hidden">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20">
+<!-- Hero Section -->
+<section class="text-center mb-16 md:mb-24">
+<div class="inline-flex items-center gap-2 bg-secondary/10 text-secondary font-label-caps text-label-caps px-4 py-1.5 rounded-full mb-6 border border-secondary/20">
+<span class="material-symbols-outlined text-[14px]" data-icon="bolt" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                AI-Powered Analysis
+            </div>
+<h2 class="font-h1 text-h1 text-on-surface mb-6 max-w-3xl mx-auto">
+                Identify Crop Diseases <i class="text-secondary font-normal">Instantly.</i>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                Upload a photo of your plant leaves to receive a scientific-grade diagnosis, treatment recommendations, and localized severity impact within seconds.
+            </p>
+</section>
+<!-- Main Interaction Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Left Side: Features -->
+<div class="lg:col-span-4 space-y-6 order-2 lg:order-1">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_8px_30px_rgb(26,46,26,0.04)] border border-outline-variant/30 hover:translate-y-[-4px] transition-transform duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="microscope">magnification_small</span>
+</div>
+<h3 class="font-h3 text-h3 mb-2">Instant Diagnosis</h3>
+<p class="text-on-surface-variant font-body-md">Advanced computer vision identifies over 400 common agricultural pathogens and nutrient deficiencies.</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_8px_30px_rgb(26,46,26,0.04)] border border-outline-variant/30 hover:translate-y-[-4px] transition-transform duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-secondary/5 flex items-center justify-center mb-4 group-hover:bg-secondary/10 transition-colors">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="medical_services">medical_services</span>
+</div>
+<h3 class="font-h3 text-h3 mb-2">Treatment Plans</h3>
+<p class="text-on-surface-variant font-body-md">Get organic and chemical-based remedial suggestions tailored to your specific crop variety and climate.</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_8px_30px_rgb(26,46,26,0.04)] border border-outline-variant/30 hover:translate-y-[-4px] transition-transform duration-300 group">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed/10 flex items-center justify-center mb-4 group-hover:bg-tertiary-fixed/20 transition-colors">
+<span class="material-symbols-outlined text-tertiary text-2xl" data-icon="analytics">analytics</span>
+</div>
+<h3 class="font-h3 text-h3 mb-2">Severity Rating</h3>
+<p class="text-on-surface-variant font-body-md">Understand the exact risk level and predicted yield impact based on current disease progression.</p>
+</div>
+</div>
+<!-- Right Side: Upload Canvas -->
+<div class="lg:col-span-8 order-1 lg:order-2">
+<div class="bg-surface-container-lowest rounded-2xl shadow-[0_12px_40px_rgba(26,46,26,0.08)] p-4 md:p-8 border border-outline-variant/40">
+<div class="relative w-full aspect-video md:aspect-[16/9] rounded-xl border-2 border-dashed border-secondary/40 bg-surface-container-low flex flex-col items-center justify-center gap-4 transition-all hover:bg-surface-container group cursor-pointer overflow-hidden">
+<!-- Illustration Placeholder -->
+<div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+<img class="w-full h-full object-cover" data-alt="A high-resolution macro photograph of a vibrant green tomato leaf showing early signs of blight, set against a warm cream studio background with soft directional lighting to emphasize texture and organic patterns. The style is professional, scientific, and clean, matching a botanical research aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNqzzc3Q0MjPEnY-kowymXIJP6WcCH_Yn3y8Kh64pihFzRjKdXFaM9qDJ51JWEp92tsFy2IoJO4tZpreY17VYscLvy4UchyzLCkMHv1j8DHxU2SaVZdtW_q6VSb7Cmnel1J6IAdK1fQhKIXC5sDzfGjtUF10TcYbtvcvYvpdaHdTs9mBLdeJOc6jdL7Lf-gP_x60dbDgeruA9SdEtfzHWud-A6-5DP5BVdT1yI5-YMhRqCSnn-BumG5TsN6izhUsTbXKR5yf_UjPPi"/>
+</div>
+<div class="z-10 flex flex-col items-center text-center px-6">
+<div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="photo_camera">photo_camera</span>
+</div>
+<h4 class="font-h3 text-h3 text-primary mb-2">Drop your plant photo here</h4>
+<p class="font-body-md text-on-surface-variant mb-6">Supports JPEG, PNG and HEIC up to 20MB</p>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-caps tracking-wide hover:bg-secondary-container hover:text-on-secondary-container transition-all shadow-lg active:scale-95">
+                                Choose Photo
+                            </button>
+</div>
+</div>
+<div class="mt-8">
+<button class="w-full bg-primary-container text-on-primary-fixed py-5 rounded-xl font-h3 text-h3 flex items-center justify-center gap-3 hover:bg-primary transition-colors group shadow-xl">
+<span class="material-symbols-outlined text-primary-fixed group-hover:rotate-12 transition-transform" data-icon="search">search</span>
+                            Analyze Crop Health
+                        </button>
+</div>
+<!-- Trust Bar -->
+<div class="mt-8 pt-8 border-t border-outline-variant/30 flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="verified_user">verified_user</span>
+<span class="font-label-caps">98.2% Precision</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_florist">local_florist</span>
+<span class="font-label-caps">Botany Experts Certified</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="security">security</span>
+<span class="font-label-caps">Private Analysis</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Content: Botanical Specimens -->
+<section class="mt-24">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+<div>
+<span class="font-label-caps text-secondary uppercase tracking-[0.2em]">Regional Trends</span>
+<h2 class="font-h2 text-h2 mt-2">Recently Identified Pathogens</h2>
+</div>
+<a class="text-primary font-label-caps border-b border-primary hover:text-secondary hover:border-secondary transition-all" href="#">View Full Database →</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Specimen Card 1 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden group border border-transparent hover:border-outline-variant transition-all">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up macro shot of a potato leaf affected by early blight, showing concentric rings and yellow halo patterns. The lighting is crisp and scientific, with a warm cream overlay to maintain the brand's aesthetic. High detail on the leaf texture and parasitic damage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB156H5IFCK7fjY2ov5O-usEHB6Zry3Wkj7HeFsfuk_r3b3sjVmohAgt8tOMGUY6IN-Bq_o1kYyWu6xrbEfyILqkB91oeN9x46kOK_iC0mIwgoHTMNDgTUQxfZXSmFrNVV0Af_Y6d-US0g7mgWppet1zh1n_oi9cszlioWSfDYo9vVczULcQmVUmqevCx4J7VDIGM1x8xP9DLWf7x-vW0oYKyudMFvTE_NyAjAyKEijmXYAU8SWCk6GLPmI_Yp9rIuiZeEmSw-6Cd5H"/>
+<div class="absolute top-3 right-3 bg-error text-on-error px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">High Risk</div>
+</div>
+<div class="p-4">
+<h4 class="font-h3 text-h3 text-[18px] mb-1">Early Blight</h4>
+<p class="text-on-surface-variant font-label-caps text-[10px]">Solanum tuberosum</p>
+</div>
+</div>
+<!-- Specimen Card 2 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden group border border-transparent hover:border-outline-variant transition-all">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A detailed view of a grape leaf exhibiting signs of powdery mildew, characterized by white, dust-like spots. The background is a soft, out-of-focus vineyard at sunset, providing a warm, golden lighting that complements the cream UI palette. Professional agricultural photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqIfWEkrW86qZHUjz-pjHWCuKgY2twcELgtJu6RE4h2UNgoE7jvWlHWFzArfTCleFdJOEtl8IiG-rGC1BG0ANMabOq6m7-AChzzj8HDU9qHbffjFid2lYoOLnqtBgdnPotEzSx2a50B63btlcRS8ijjhJiaR6FFzsFCJva2MlKkDSnR0oRCUk8YmnSyd7oMQ4BWWgm3yl7Vs3RLGMzVWXZpX5NI1w1N5pWoajuBT2e4FgOOrzk6L8aVXuVhCZD53d55wU4pdlrKInx"/>
+<div class="absolute top-3 right-3 bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Managed</div>
+</div>
+<div class="p-4">
+<h4 class="font-h3 text-h3 text-[18px] mb-1">Powdery Mildew</h4>
+<p class="text-on-surface-variant font-label-caps text-[10px]">Vitis vinifera</p>
+</div>
+</div>
+<!-- Specimen Card 3 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden group border border-transparent hover:border-outline-variant transition-all">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up of a healthy kale leaf with beautiful organic fractal patterns and water droplets. The image is bright and fresh with high-key lighting, emphasizing health and vitality. The style is minimal and botanical, using natural green tones that align with the Forest Green primary brand color." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnCuHCioCoyyV3o6LYTBXSdBHjkpdvAB259Xaogg9NXFkBWyH5hN8sujmaPJoTbo4yP1BEZuWUVJ-C9KzuK9Cy7UmCbej8-0gqrBR-ZyarYho4kQTljif5R3zBZ5yXrXw_mcQ6pZ3dqRLwErta4ZNpmyIiZ1eaH6Kk-b8KCiV6FdJiJgweSSKoOcS9mc3Dd7z2E0BMxLv9yDGI_vqUcX-QGtS5yEDbyQ2vN_s7Pix8W4UQ_MkPiFLIrJ18MDAvy2ASH_pOHX95izMq"/>
+<div class="absolute top-3 right-3 bg-secondary text-on-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Healthy</div>
+</div>
+<div class="p-4">
+<h4 class="font-h3 text-h3 text-[18px] mb-1">Healthy Foliage</h4>
+<p class="text-on-surface-variant font-label-caps text-[10px]">Brassica oleracea</p>
+</div>
+</div>
+<!-- Specimen Card 4 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden group border border-transparent hover:border-outline-variant transition-all">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro shot of a corn leaf showing rust pustules, with a warm, reddish-brown earthy tone. The lighting is soft and diffused to highlight the scientific details of the fungal infection. The composition is clean and minimalist, echoing a premium textbook layout for agronomists." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEMFbwb269wRIzEirSyhKYgFCPd_ev79I_iZyzQE0jYhL7knpG0Fa-Bo5nWBM3xdC8nHMeDvuqjjFJLmPA6NjIavXBn7qDk_OXZPnISAoYfhEVOYO2xqy8ACa_YQKyBmH1K0yWbkTMXF6Tpvcfdfb1bZEA_qKvpvwFLfTcgx5kegdgv9GU2bmcnl1qoyceQ93aP44rpzOrj-cCwRJQyqMRWCzaAn5-utrFfJF_s5hQn5MXVk8sHjB4P0hnsbzs1d_BxD8sI6kwjo3l"/>
+<div class="absolute top-3 right-3 bg-[#e29400] text-white px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Moderate</div>
+</div>
+<div class="p-4">
+<h4 class="font-h3 text-h3 text-[18px] mb-1">Leaf Rust</h4>
+<p class="text-on-surface-variant font-label-caps text-[10px]">Zea mays</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Navigation Shell (Bottom Nav for Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/90 dark:bg-surface-container-high/90 backdrop-blur-lg border-t border-outline-variant/30 shadow-[0_-4px_20px_rgba(26,46,26,0.05)] md:hidden">
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1.5 transition-all duration-300 scale-95">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-[10px] uppercase">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant/60 px-4 py-1.5">
+<span class="material-symbols-outlined" data-icon="center_focus_strong">center_focus_strong</span>
+<span class="font-label-caps text-[10px] uppercase">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant/60 px-4 py-1.5">
+<span class="material-symbols-outlined" data-icon="potted_plant">potted_plant</span>
+<span class="font-label-caps text-[10px] uppercase">Library</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant/60 px-4 py-1.5">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-[10px] uppercase">Expert</span>
+</div>
+</nav>
+<!-- Background Subtle Textures -->
+<div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+<div class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-secondary-container/10 blur-[120px]"></div>
+<div class="absolute bottom-[-5%] left-[-5%] w-[30%] h-[30%] rounded-full bg-primary-fixed/20 blur-[100px]"></div>
+</div>
+</body></html>
